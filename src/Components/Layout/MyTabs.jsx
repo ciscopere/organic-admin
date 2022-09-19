@@ -25,7 +25,6 @@ export default function LabTabs() {
           >
             <Tab label="FRUTAS Y VERDURAS" value="1" />
             <Tab label="PRODUCTOS ESPECIALES" value="2" />
-            {/* <Tab label="Item Three" value="3" /> */}
           </TabList>
         </Box>
         <TabPanel value="1">
@@ -34,7 +33,6 @@ export default function LabTabs() {
         <TabPanel value="2">
           <SpecialProducts />
         </TabPanel>
-        {/* <TabPanel value="3">Item Three</TabPanel> */}
       </TabContext>
     </Box>
   );

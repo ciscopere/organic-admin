@@ -12,7 +12,7 @@ import {
   SpeedDial,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import AddDrawer from "../agregar/AddDrawer";
+import AddDrawer from "../drawers/AddDrawer";
 import { useDispatch } from "react-redux";
 import { openAddDrawer } from "../../redux/addDrawer.slice";
 

@@ -5,15 +5,11 @@ const addDrawerSlice = createSlice({
   initialState: { open: false },
   reducers: {
     openAddDrawer(state, action) {
-      if (state.open === false) {
-        state.open = true;
-      } 
+      if (!state.open) state.open = true;
     },
-    closeAddDrawer(state, action){
-      if (state.open===true){
-        state.open = false;
-      }
-    }
+    closeAddDrawer(state, action) {
+      if (state.open) state.open = false;
+    },
   },
 });
 

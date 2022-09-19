@@ -11,17 +11,22 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AdbIcon from "@mui/icons-material/Adb";
 import LogoIO from "../../assets/LogoIO.jpeg";
 import Logo from "../../assets/Logo.jpeg";
 import classes from "./AppBar.module.css";
+import { useDispatch } from "react-redux";
+import { openCartDrawer } from "../../redux/cartDrawer.slice";
 
-const pages = ["Frutas y verduras", "Productos especiales", "Blog"];
+const pages = ["Quienes somos", "Productos especiales", "Contacto"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const dispatch = useDispatch();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -37,6 +42,10 @@ const ResponsiveAppBar = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const openShoppingCart = () => {
+    dispatch(openCartDrawer());
   };
 
   return (
@@ -133,9 +142,9 @@ const ResponsiveAppBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+            <Tooltip title="Cart">
+              <IconButton onClick={openShoppingCart} sx={{ p: 0 }}>
+                <ShoppingCartIcon />
               </IconButton>
             </Tooltip>
             <Menu

@@ -3,6 +3,7 @@ import {
   Button,
   Divider,
   Drawer,
+  Grid,
   List,
   ListItemButton,
   ListItemText,
@@ -11,6 +12,29 @@ import { Box } from "@mui/system";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { closeAddDrawer } from "../../redux/addDrawer.slice";
+import { CenterFocusStrong } from "@mui/icons-material";
+
+function FormRow() {
+  return (
+    <React.Fragment>
+      <Grid item>
+        <Item>1</Item>
+      </Grid>
+      <Grid item>
+        <Item>2</Item>
+      </Grid>
+      <Grid item>
+        <Item>3</Item>
+      </Grid>
+      <Grid item>
+        <Item>4</Item>
+      </Grid>
+      <Grid item>
+        <Item>5</Item>
+      </Grid>
+    </React.Fragment>
+  );
+}
 
 export default function AddDrawer() {
   const dispatch = useDispatch();
@@ -24,10 +48,47 @@ export default function AddDrawer() {
         sx: {
           borderRadius: 1,
           height: 170,
+          justifyContent: "space-around",
+          display: "flex",
         },
       }}
     >
-      <List
+      <Grid
+        container
+        // direction="column"
+        display="flex"
+        justifyContent="space-evenly"
+        alignItems="center"
+      >
+        <Grid
+          display="flex"
+          justifyContent="space-evenly"
+          alignItems="center"
+          height="200px"
+        >
+          <Grid>
+            <Button>1</Button>
+            <Button>2</Button>
+            <Button>3</Button>
+            <Button>4</Button>
+            <Button>5</Button>
+            <Button>6</Button>
+            <Button>7</Button>
+            <Button>8</Button>
+            <Button>9</Button>
+            <Button>10</Button>
+          </Grid>
+        </Grid>
+        <Button
+          onClick={() => {
+            dispatch(closeAddDrawer());
+          }}
+        >
+          Cerrar
+        </Button>
+      </Grid>
+
+      {/* <List
         sx={{
           display: "flex",
           flexDirection: "row",
@@ -102,7 +163,7 @@ export default function AddDrawer() {
         >
           Cerrar
         </Button>
-      </List>
+      </List> */}
     </Drawer>
   );
 }
