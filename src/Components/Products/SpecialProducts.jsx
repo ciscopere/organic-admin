@@ -1,6 +1,7 @@
-import { Card, Grid, Zoom } from "@mui/material";
+import { Grid, Zoom } from "@mui/material";
 import { useState } from "react";
-import Product from "./Product";
+import Card from "../Card";
+import Item from "./Item";
 
 const PRODUCTS = [
   {
@@ -22,57 +23,60 @@ const PRODUCTS = [
     price: 12.99,
   },
   {
-    id: "m4",
+    id: "s4",
     name: "Otro",
     description: "Healthy...and green...",
     price: 18.99,
   },
   {
-    id: "m5",
+    id: "s5",
     name: "Brocoli",
     description: "Finest fish and veggies",
     price: 22.99,
   },
   {
-    id: "m6",
+    id: "s6",
     name: "Espinaca",
     description: "A german specialty!",
     price: 16.5,
   },
   {
-    id: "m7",
+    id: "s7",
     name: "Coliflor",
     description: "American, raw, meaty",
     price: 12.99,
   },
   {
-    id: "m8",
+    id: "s8",
     name: "Frutilla",
     description: "Healthy...and green...",
     price: 18.99,
   },
   {
-    id: "m9",
+    id: "s9",
     name: "Banana",
     description: "Finest fish and veggies",
     price: 22.99,
-  }
+  },
 ];
 const delay = 30;
 
-
-
 const SpecialProducts = (props) => {
   const items = PRODUCTS.map((product, index) => (
-    <Zoom key={product.id} in style={{ transitionDelay: delay * index + 1 + 'ms' }}>
-        <Grid item xs={4} sm={3} md={2}>
-        <Product
-            key={product.id}
-            name={product.name}
-            description={product.description}
-            price={product.price}
-        />
-        </Grid>
+    <Zoom
+      key={product.id}
+      in
+      style={{ transitionDelay: delay * index + 1 + "ms" }}
+    >
+      <Grid item xs={4} sm={3} md={2}>
+        {/* <Card
+          id={product.id}
+          name={product.name}
+          description={product.description}
+          price={product.price}
+        /> */}
+        <Item id={product.id} name={product.name} price={product.price} />
+      </Grid>
     </Zoom>
   ));
 
@@ -82,7 +86,6 @@ const SpecialProducts = (props) => {
         {items}
       </Grid>
     </div>
-    
   );
 };
 

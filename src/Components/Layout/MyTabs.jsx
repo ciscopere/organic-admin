@@ -7,6 +7,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import AvailableProducts from "../Products/AvaliableProducts";
 import SpecialProducts from "../Products/SpecialProducts";
 
+
 export default function LabTabs() {
   const [value, setValue] = React.useState("1");
 
@@ -15,7 +16,7 @@ export default function LabTabs() {
   };
 
   return (
-    <Box sx={{ width: "100%", typography: "body1" }}>
+    <Box sx={{ width: "105%", typography: "body1" }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <TabList

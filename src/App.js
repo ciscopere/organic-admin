@@ -1,24 +1,29 @@
-import { Fragment } from "react";
-import Header from "./Components/Layout/Header";
 import Container from "@mui/material/Container";
 import MyTabs from "./Components/Layout/MyTabs";
-import AddDrawer from "./Components/drawers/AddDrawer";
-import  AppBar  from './Components/Layout/AppBar'
+import AppBar from "./Components/Layout/AppBar";
 import CartDrawer from "./Components/drawers/cartDrawer";
+import { useDispatch } from "react-redux/es/hooks/useDispatch";
+import { closeCartDrawer } from "./redux/cartDrawer.slice";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import ButtonAppBar from "./Components/Layout/AppBaar";
 
 function App() {
   return (
-    <Fragment>
-      <AppBar />
-      <header></header>
+    <BrowserRouter>
+      <ButtonAppBar />
+      {/* <AppBar /> */}
       <main>
         <Container>
-          <MyTabs></MyTabs>
-          {/* <AddDrawer /> */}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
           <CartDrawer />
         </Container>
       </main>
-    </Fragment>
+    </BrowserRouter>
   );
 }
 

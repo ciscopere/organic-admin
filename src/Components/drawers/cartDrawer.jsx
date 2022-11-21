@@ -1,20 +1,27 @@
 import React from "react";
 import {
   Button,
+  Container,
   Divider,
   Drawer,
+  IconButton,
   List,
   ListItemButton,
   ListItemText,
+  Typography,
 } from "@mui/material";
-import { Box } from "@mui/system";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { closeCartDrawer } from "../../redux/cartDrawer.slice";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { useNavigate } from "react-router-dom";
 
 export default function CartDrawer() {
   const dispatch = useDispatch();
   const open = useSelector((state) => state.cartDrawer.open);
+  const cart = useSelector((state) => state.cart.cartItems);
+
+  const navigate = useNavigate();
 
   return (
     <Drawer
@@ -23,10 +30,26 @@ export default function CartDrawer() {
       PaperProps={{
         sx: {
           borderRadius: 1,
-          width: 170,
         },
       }}
     >
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        {/* <LocalGroceryStoreRoundedIcon fontSize="medium" /> */}
+        <Typography>CARRITO</Typography>
+        <IconButton
+          onClick={() => dispatch(closeCartDrawer())}
+          sx={{ display: "flex", justifyContent: "flex-end" }}
+        >
+          <CloseRoundedIcon fontSize="large" />
+        </IconButton>
+      </Container>
+      <Divider variant="middle" flexItem />
       <List
         sx={{
           display: "flex",
@@ -35,46 +58,30 @@ export default function CartDrawer() {
           width: 3 / 4,
         }}
       >
-        <ListItemButton>
-          <ListItemText sx={{ display: "flex", justifyContent: "center" }}>
-            1
-          </ListItemText>
-        </ListItemButton>
-        <Divider orientation="vertical" variant="middle" flexItem />
-        <ListItemButton>
-          <ListItemText sx={{ display: "flex", justifyContent: "center" }}>
-            2
-          </ListItemText>
-        </ListItemButton>
-        <Divider orientation="vertical" variant="middle" flexItem />
-        <ListItemButton>
-          <ListItemText sx={{ display: "flex", justifyContent: "center" }}>
-            3
-          </ListItemText>
-        </ListItemButton>
-        <Divider orientation="vertical" variant="middle" flexItem />
-        <ListItemButton>
-          <ListItemText sx={{ display: "flex", justifyContent: "center" }}>
-            4
-          </ListItemText>
-        </ListItemButton>
-        <Divider orientation="vertical" variant="middle" flexItem />
-        <ListItemButton>
-          <ListItemText sx={{ display: "flex", justifyContent: "center" }}>
-            5
-          </ListItemText>
-        </ListItemButton>
-        <Divider orientation="vertical" variant="middle" flexItem />
-
-        <Divider orientation="vertical" variant="middle" flexItem />
-        <Button
-          onClick={() => {
-            dispatch(closeCartDrawer());
-          }}
-        >
-          Cerrar
-        </Button>
+        {cart.map((cartItem) => {
+          return (
+            <>
+              <ListItemButton key={cartItem.id}>
+                <ListItemText
+                  sx={{ display: "flex", justifyContent: "center" }}
+                >
+                  {cartItem.name} {cartItem.quantity}
+                </ListItemText>
+              </ListItemButton>
+              <Divider variant="middle" flexItem />
+            </>
+          );
+        })}
       </List>
+      <Button
+        onClick={() => {
+          navigate("/cart");
+          dispatch(closeCartDrawer());
+        }}
+        sx={{ justifyContent: "flex-end" }}
+      >
+        Open cart
+      </Button>
     </Drawer>
   );
 }

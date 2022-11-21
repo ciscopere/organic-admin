@@ -19,7 +19,7 @@ import classes from "./AppBar.module.css";
 import { useDispatch } from "react-redux";
 import { openCartDrawer } from "../../redux/cartDrawer.slice";
 
-const pages = ["Quienes somos", "Productos especiales", "Contacto"];
+const pages = ["Comprar", "Contacto"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const ResponsiveAppBar = () => {
@@ -57,7 +57,7 @@ const ResponsiveAppBar = () => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },

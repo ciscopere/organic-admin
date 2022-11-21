@@ -1,6 +1,6 @@
-import { Card, Grid, Zoom } from "@mui/material";
+import { Grid, Zoom } from "@mui/material";
 import { useState } from "react";
-import Product from "./Product";
+import Card from "../Card";
 
 const PRODUCTS = [
   {
@@ -75,7 +75,7 @@ const PRODUCTS = [
     description: "Healthy...and green...",
     price: 18.99,
   },
-  { 
+  {
     id: "m13",
     name: "Naranja",
     description: "Finest fish and veggies",
@@ -102,29 +102,30 @@ const PRODUCTS = [
 ];
 const delay = 30;
 
-
-
 const AvailableProducts = (props) => {
-  const items = PRODUCTS.map((product, index) => (
-    <Zoom key={product.id} in style={{ transitionDelay: delay * index + 1 + 'ms' }}>
-        <Grid item xs={4} sm={3} md={2}>
-        <Product
-            key={product.id}
-            name={product.name}
-            description={product.description}
-            price={product.price}
+  const renderProducts = PRODUCTS.map((product, index) => (
+    <Zoom
+      key={product.id}
+      in
+      style={{ transitionDelay: delay * index + 1 + "ms" }}
+    >
+      <Grid item xs={4} sm={3} md={2}>
+        <Card
+          id={product.id}
+          name={product.name}
+          description={product.description}
+          price={product.price}
         />
-        </Grid>
+      </Grid>
     </Zoom>
   ));
 
   return (
     <div>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        {items}
+        {renderProducts}
       </Grid>
     </div>
-    
   );
 };
 

@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import addDrawerReducer from "../redux/addDrawer.slice";
-import cartDrawerReducer from "../redux/cartDrawer.slice";
+import cartDrawerReducer from "./cartDrawer.slice";
+import { cartReducer } from "./cart.slice";
+import { persistStore, persistReducer } from "redux-persist";
 
 export const store = configureStore({
   reducer: {
-    addDrawer: addDrawerReducer,
     cartDrawer: cartDrawerReducer,
+    cart: cartReducer,
   },
 });
